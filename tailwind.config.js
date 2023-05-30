@@ -9,8 +9,8 @@ export default {
   
  // daisyUI config (optional)
  daisyui: {
-  // themes: ["cmyk", "dracula"],
-  darkTheme: "cupcake",
+  themes: ["dracula"],
+  darkTheme: "dracula",
 },
 }
 
