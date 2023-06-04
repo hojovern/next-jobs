@@ -10,7 +10,7 @@
   
     async function createUser(evt) {
       evt.preventDefault()
-  
+    
       if (evt.target['password'].value != evt.target['password-confirmation'].value) {
         formErrors['password'] = { message: 'Password confirmation does not match' };
         return;

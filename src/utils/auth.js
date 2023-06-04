@@ -1,4 +1,6 @@
 import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
+import { writable } from 'svelte/store';
+export const isLoggedInStore = writable(false);
 
 const emptyAuth = {
   "token": "",
@@ -7,6 +9,7 @@ const emptyAuth = {
 
 export function logOut() {
   localStorage.setItem("auth", JSON.stringify(emptyAuth));
+  isLoggedInStore.set(false);
   return true
 }
 
@@ -27,7 +30,8 @@ export function getTokenFromLocalStorage() {
 }
 
 export async function isLoggedIn() {
-  if (!getTokenFromLocalStorage()) {
+  if (!getTokenFromLocalStorage())
+   {
     return false
   }
 
@@ -51,6 +55,8 @@ export async function isLoggedIn() {
         "token": res.token,
         "userId": res.record.id
       }));
+      
+      isLoggedInStore.set(true)
 
       return true
     }
@@ -85,6 +91,8 @@ export async function authenticateUser(username, password) {
       "userId": res.record.id
     }));
 
+    isLoggedInStore.set(true)
+    
     return {
       success: true,
       res: res
