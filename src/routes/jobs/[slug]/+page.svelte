@@ -1,13 +1,25 @@
 <script>
   import SvelteMarkdown from 'svelte-markdown';
   import humanize from 'humanize-plus';
+  import { getUserId } from '../../../utils/auth';
   export let data;
 </script>
+
+<svelte:head>
+    <title>{data.job.title}</title>
+</svelte:head>
 
 <div class="mt-10">
   <div class="flex">
       <div class="flex-1">
+
+        <div class='flex justify-between'>
           <h1 class="text-3xl font-extrabold">{data.job.title}</h1>
+          {#if data.job.user == getUserId()}
+            <a href='{data.job.id}/update' class='btn btn-outline'>Edit Job Post</a>
+          {/if}
+        </div>
+
           <p class="text-xl">{data.job.employer}</p>
       </div>
   </div>
@@ -23,6 +35,7 @@
           <h2 class="text-xl font-thin">How to Apply?</h2>
           <p>{data.job.applicationInstructions}</p>
       </div>
+
       <div class="basis-1/3 ml-4">
           <h2 class="text-xl font-thin">Location</h2>
           <p>{data.job.location}</p>

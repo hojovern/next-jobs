@@ -9,8 +9,7 @@ export default {
   
  // daisyUI config (optional)
  daisyui: {
-  themes: ["dracula"],
-  darkTheme: "dracula",
+  themes: ["emerald" , "night"],
 },
 }
 
